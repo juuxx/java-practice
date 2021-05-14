@@ -4,12 +4,38 @@ import util.BaseballUtil;
 import java.util.Scanner;
 
 public class GameHelper {
+    private static final int TRIAL_NUMBER = 10;
 
     public static void play(){
         Scanner sc = new Scanner(System.in);
+
+        boolean[] trial = new boolean[TRIAL_NUMBER];
         int[] computerNums = BaseballUtil.generateThreeDigitNumbers();
 
-        int[] playerNums = getUserInputThreeNumber(sc);
+        //비교 / 비교하고 결과값  반환 실패시 횟수 차감 및 다시 유저 넘버 뽑기
+        int count = 0;
+        while (true){
+            int[] playerNums = getUserInputThreeNumber(sc);
+            Baseball baseball = BaseballUtil.compareThreeNumber(computerNums, playerNums);
+            int strike = baseball.getStrike();
+            System.out.println(baseball.toString());
+            if(strike == 3){
+                System.out.println("성공! ");
+                break;
+            }
+            if(strike != 3){
+                System.out.println("실패! 다시 입력하세요");
+                count++;
+            }
+            trial[count] = true;
+            if(trial[TRIAL_NUMBER-1]){
+                System.out.println("모든 기회를 다 썼습니다. 실패! ");
+                 break;
+            }
+        }
+        sc.close();
+
+
     }
 
 

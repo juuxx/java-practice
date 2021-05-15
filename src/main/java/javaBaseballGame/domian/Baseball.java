@@ -1,4 +1,4 @@
-package domian;
+package javaBaseballGame.domian;
 
 
 public class Baseball {

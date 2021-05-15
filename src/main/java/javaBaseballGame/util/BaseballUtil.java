@@ -1,8 +1,8 @@
-package util;
+package javaBaseballGame.util;
 
-import domian.Baseball;
+import javaBaseballGame.domian.Baseball;
 
-import java.util.Random;
+import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class BaseballUtil {
@@ -33,14 +33,31 @@ public class BaseballUtil {
 
     //유저가 입력한 숫자
     public static int[] guessThreeNumber(String userInput){
-        int[] userInputIntegerSplit = new int[BASEBALL_NUM];
+        int[] userInputIntegerSplit = initUserInput();
         String[] userInputStringSplit = userInput.split(",");
+
+        if(userInputStringSplit.length != BASEBALL_NUM){
+            System.out.println("[!] 형식에 맞게 입력해주세요.");
+            return userInputIntegerSplit;
+        }
         for (int i =0; i < userInputIntegerSplit.length; i++){
-            userInputIntegerSplit[i] = Integer.parseInt(userInputStringSplit[i].trim());
+            String input = userInputStringSplit[i].trim();
+            if(!isStringNumberFormat(input)){
+                System.out.println("[!] 숫자만 입력해주세요.");
+                break;
+            }
+            userInputIntegerSplit[i] = Integer.parseInt(input);
         }
 
         return userInputIntegerSplit;
     }
+
+    private static int[] initUserInput(){
+        int[] userInputIntegerSplit = new int[BASEBALL_NUM];
+        Arrays.fill(userInputIntegerSplit, -1);
+        return userInputIntegerSplit;
+    }
+
 
     //컴퓨터와 유저 입력 숫자 비교
     public static Baseball compareThreeNumber(int[] computer, int[] user){
@@ -63,5 +80,13 @@ public class BaseballUtil {
         return new Baseball(strike, ball);
     }
 
+    public static boolean isStringNumberFormat(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
 
 }

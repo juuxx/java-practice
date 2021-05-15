@@ -1,6 +1,6 @@
 package javaBaseballGame.util;
 
-import javaBaseballGame.domian.Baseball;
+import javaBaseballGame.domian.BaseballStatus;
 
 import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
@@ -60,7 +60,7 @@ public class BaseballUtil {
 
 
     //컴퓨터와 유저 입력 숫자 비교
-    public static Baseball compareThreeNumber(int[] computer, int[] user){
+    public static BaseballStatus compareThreeNumber(int[] computer, int[] user){
         int strike = 0;
         int ball = 0;
 
@@ -77,7 +77,7 @@ public class BaseballUtil {
             }
         }
 
-        return new Baseball(strike, ball);
+        return new BaseballStatus(strike, ball);
     }
 
     public static boolean isStringNumberFormat(String input) {

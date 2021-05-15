@@ -1,11 +1,11 @@
 package javaBaseballGame.domian;
 
 
-public class Baseball {
+public class BaseballStatus {
     private int strike;
     private int ball;
 
-    public Baseball(int strike, int ball) {
+    public BaseballStatus(int strike, int ball) {
         this.strike = strike;
         this.ball = ball;
     }

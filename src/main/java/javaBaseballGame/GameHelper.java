@@ -1,9 +1,8 @@
 package javaBaseballGame;
 
-import javaBaseballGame.domian.Baseball;
+import javaBaseballGame.domian.BaseballStatus;
 import javaBaseballGame.util.BaseballUtil;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class GameHelper {
@@ -21,9 +20,9 @@ public class GameHelper {
                 continue;
             }
 
-            Baseball baseball = tryGuess(computerNumbers, userNumbers);
-            System.out.println(baseball.toString());
-            if(endCondition(baseball)){
+            BaseballStatus baseballStatus = tryGuess(computerNumbers, userNumbers);
+            System.out.println(baseballStatus.toString());
+            if(endCondition(baseballStatus)){
                 System.out.println("3개의 숫자를 모두 맞히셨습니다. 게임 종료 ! ");
                 break;
             }
@@ -70,8 +69,8 @@ public class GameHelper {
         }
     }
 
-    private static boolean endCondition(Baseball baseball){
-        return 3 == baseball.getStrike();
+    private static boolean endCondition(BaseballStatus baseballStatus){
+        return 3 == baseballStatus.getStrike();
     }
 
     private static String userInput(Scanner sc){
@@ -90,7 +89,7 @@ public class GameHelper {
         return convertUserInput(userInput);
     }
 
-    private static Baseball tryGuess(int[] computerNumbers, int[] guessNumbers){
+    private static BaseballStatus tryGuess(int[] computerNumbers, int[] guessNumbers){
         return BaseballUtil.compareThreeNumber(computerNumbers, guessNumbers);
     }
 }
